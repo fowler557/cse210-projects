@@ -31,23 +31,23 @@ public class Scripture
 }
 
     public void HideRandomWords(int count)
+{
+    List<Word> visibleWords = new List<Word>();
+    foreach (Word word in _words)
     {
-        var visibleWords = new List<Word>();
-        foreach (var word in _words)
+        if (!word.GetWord().Contains("_"))
         {
-            if (!word.GetWord().Contains("_"))
-            {
-                visibleWords.Add(word);
-            }
-        }
-
-        var random = new Random();
-        while (count > 0 && visibleWords.Count > 0)
-        {
-            var randomIndex = random.Next(visibleWords.Count);
-            visibleWords[randomIndex].HideWord();
-            visibleWords.RemoveAt(randomIndex);
-            count--;
+            visibleWords.Add(word);
         }
     }
+
+    Random random = new Random();
+    while (count > 0 && visibleWords.Count > 0)
+    {
+        int randomIndex = random.Next(visibleWords.Count);
+        visibleWords[randomIndex].HideWord();
+        visibleWords.RemoveAt(randomIndex);
+        count--;
+    }
+}
 }
