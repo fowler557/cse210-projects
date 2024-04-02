@@ -1,24 +1,47 @@
-using System.Security.Cryptography.X509Certificates;
+using System.Runtime.CompilerServices;
 
-public class Goal
+public abstract class Goal
 {
+    
     private string _goalName;
     private string _goalDescription;
-    private int _goalNumber;
-    private string _goalType;
     private int _goalPoints;
     private bool _isComplete;
 
-    public Goal(string goalName, string goalDescription, int goalNumber, string goalType, int goalPoints)  //constructer that takes in all the parameters
+    public Goal(string goalName, string goalDescription, int goalPoints, bool isComplete)  //constructer that takes in all the parameters
     {
         _goalName = goalName;
         _goalDescription = goalDescription;
-        _goalNumber = goalNumber;
-        _goalType = goalType;
         _goalPoints = goalPoints;
+        _isComplete = isComplete;
 
         
     }
+
+    public virtual void CreateGoal()  //creates the goal
+    {
+        Console.Clear();
+        Console.Write("What is the name of your goal? ");
+        SetGoalName(Console.ReadLine());
+        Console.Write("Type a short description of it: ");
+        SetGoalDescription(Console.ReadLine());
+        Console.Write("How many points is this goal worth? ");
+        SetGoalPoints(int.Parse(Console.ReadLine()));
+    }
+
+    public virtual string GoalStatus()  //returns the status of the goal
+    {
+        if (GetCompleted() == true)
+        {
+            return $"[X] {GetGoalName()} ({GetGoalDescription()})";
+        }
+        else
+        {
+            return $"[ ] {GetGoalName()} ({GetGoalDescription()})";
+        }
+    }
+
+    public abstract string SeparateGoal();
 
 
     public string GetGoalName()    //gets the name of the goal
@@ -45,28 +68,7 @@ public class Goal
     }
 
 
-    public int GetGoalNumber()  //gets the number of the goal
-    {
-        return _goalNumber;
-    }
 
-
-    public void SetGoalNumber(int goalNumber)  //sets the number of the goal
-    {
-        _goalNumber = goalNumber;
-    }
-
-
-    public string GetGoalType()  //gets the type of the goal
-    {
-        return _goalType;
-    }
-
-
-    public void SetGoalType(string goalType)  //sets the type of the goal
-    {
-        _goalType = goalType;
-    }
 
 
     public int GetGoalPoints()  //gets the points of the goal
@@ -86,5 +88,10 @@ public class Goal
         return _isComplete;
     }
 
+    public void SetCompleted(bool isComplete)  //sets if the goal is completed
+    {
+        _isComplete = isComplete;
+    }
 
+    
 }

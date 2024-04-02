@@ -1,0 +1,4 @@
+475
+SimpleGoal:go to school,just do it,35,True,
+EternalGoal:pray,just do it,40,
+ChecklistGoal:smile,just do it,50,True,300,3,3,
