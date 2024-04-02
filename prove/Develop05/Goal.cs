@@ -68,9 +68,6 @@ public abstract class Goal
     }
 
 
-
-
-
     public int GetGoalPoints()  //gets the points of the goal
     {
         return _goalPoints;

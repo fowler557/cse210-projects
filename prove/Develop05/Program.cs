@@ -15,6 +15,7 @@ class Program
 
         while(userInput != 6)
         {   
+            Console.Clear();
             Console.WriteLine($"\nYou have {totalPoints} points");
             Console.WriteLine("Menu Options:");
             Console.WriteLine(" 1. Create New Goal");
@@ -72,6 +73,8 @@ class Program
                         goalIndex++;
                         Console.WriteLine($"{goalIndex}. {goal}");
                     }
+                    Console.WriteLine("Click enter to continue");
+                    Console.ReadLine();
                     break;
 
                 case 3: //save goals
@@ -105,6 +108,7 @@ class Program
                     {
                         if (isFirstLine)
                         {
+                            totalPoints = int.Parse(lines[0]);
                             isFirstLine = false;
                             continue;
                         }
@@ -117,6 +121,7 @@ class Program
                         string goalName = details[0];
                         string goalDescription = details[1];
                         int goalPoints = int.Parse(details[2]);
+
 
                         switch (goalType)
                         {
@@ -137,7 +142,6 @@ class Program
                                 bool isCompleteChecklist = bool.Parse(details[3]);
                                 int bonus = int.Parse(details[4]);
                                 int timesToComplete = int.Parse(details[5]);
-                                // int timesCompleted = timesToComplete > 0 ? int.Parse(details[6]) : 0;
                                 int timesCompleted = int.Parse(details[6]);
                                 ChecklistGoal loadedChecklistGoal = new ChecklistGoal(goalName, goalDescription, goalPoints, isCompleteChecklist, bonus, timesToComplete, timesCompleted);
                                 goals.Add(loadedChecklistGoal.GoalStatus());
@@ -190,7 +194,6 @@ class Program
                             bool isComplete2 = bool.Parse(checklistDetails[3]);
                             int bonus2 = int.Parse(checklistDetails[4]);
                             int timesToComplete2 = int.Parse(checklistDetails[5]);
-                            // int timesCompleted2 = parts2.Length > 6 ? int.Parse(checklistDetails[6]) : 0;
                             int timesCompleted2 = int.Parse(checklistDetails[6]);
                             Console.Write("How many times did you accomplish this goal? ");
                             timesCompleted2 += int.Parse(Console.ReadLine());
@@ -209,6 +212,8 @@ class Program
 
                         default:
                             break;
+
+
                     }
                     break;
 
@@ -225,128 +230,3 @@ class Program
         }
     }
 }
-
-
-
-
-//                 case 4: //load goals
-//                     Console.Clear();
-//                     goals.Clear();
-//                     separatedGoals.Clear();
-
-//                     Console.WriteLine("What filename would you like to load?");
-//                     string loadFileName = Console.ReadLine();
-//                     loadFileName = $"{loadFileName}.txt";
-
-//                     string[] lines = System.IO.File.ReadAllLines(loadFileName);
-//                     bool isFirstLine = true;
-//                     foreach (string line in lines)
-//                     {
-//                         if (isFirstLine)
-//                         {
-//                             isFirstLine = false; 
-//                             continue;
-//                         }
-
-//                         string[] parts = line.Split(':');
-//                         string goalType = parts[0];
-//                         string goalDetails = parts[1];
-
-//                         string[] details = goalDetails.Split(',');
-//                         string goalName = details[0];
-//                         string goalDescription = details[1];
-//                         int goalPoints = int.Parse(details[2]);
-
-//                         switch (goalType)
-//                         {
-//                             case "SimpleGoal":
-//                                 string[] details00 = goalDetails.Split(',');
-//                                 bool isComplete = bool.Parse(details00[3]);
-//                                 SimpleGoal simpleGoal = new SimpleGoal(goalName, goalDescription, goalPoints, isComplete);
-//                                 goals.Add(simpleGoal.GoalStatus());
-//                                 separatedGoals.Add(simpleGoal.SeparateGoal());
-//                                 break;
-
-//                             case "EternalGoal":
-//                                 EternalGoal eternalGoal = new EternalGoal(goalName, goalDescription, goalPoints, false);
-//                                 goals.Add(eternalGoal.GoalStatus());
-//                                 separatedGoals.Add(eternalGoal.SeparateGoal());
-//                                 break;
-                            
-//                             case "ChecklistGoal":
-//                                 string[] details0 = goalDetails.Split(',');
-//                                 bool isComplete0 = bool.Parse(details0[3]);
-//                                 int bonus = int.Parse(details0[4]);
-//                                 int timesToComplete = int.Parse(details0[5]);
-//                                 int timesCompleted = int.Parse(details0[6]);
-//                                 ChecklistGoal checklistGoal = new ChecklistGoal(goalName, goalDescription, goalPoints, isComplete0, bonus, timesToComplete, timesCompleted);
-//                                 goals.Add(checklistGoal.GoalStatus());
-//                                 separatedGoals.Add(checklistGoal.SeparateGoal());
-//                                 break;
-
-//                             default:   
-//                                 break;
-
-
-
-
-
-
-                // case 5: //record event
-                //     Console.Clear();
-                //     int eventCounter = 0;
-                //     foreach (String goal in goals)
-                //     {
-                //         eventCounter++;
-                //         Console.WriteLine($"{eventCounter}. {goal}");
-                //     }
-
-                //     Console.Write("Which goal did you accomplish? ");
-                //     int userEvent = int.Parse(Console.ReadLine());
-
-                //     string separatedGoal = separatedGoals[userEvent - 1];
-                //     string[] parts2 = separatedGoal.Split(',');
-                //     string goalType2 = parts2[0];
-                //     string goalDetails2 = parts2[1];
-
-                //     switch (goalType2)
-                //     {
-                //         case "SimpleGoal":
-                //             string[] details2 = goalDetails2.Split(',');
-                //             SimpleGoal simpleGoal = new SimpleGoal(details2[0], details2[1], int.Parse(details2[2]), true);
-                //             goals[userEvent - 1] = simpleGoal.GoalStatus();
-                //             separatedGoals[userEvent - 1] = simpleGoal.SeparateGoal();
-                //             totalPoints += simpleGoal.GetGoalPoints();
-                //             break;
-
-                //         case "EternalGoal":
-                //             string[] details3 = goalDetails2.Split(',');
-                //             EternalGoal eternalGoal = new EternalGoal(details3[0], details3[1], int.Parse(details3[2]), false);
-                //             goals[userEvent - 1] = eternalGoal.GoalStatus();
-                //             separatedGoals[userEvent - 1] = eternalGoal.SeparateGoal();
-                //             totalPoints += eternalGoal.GetGoalPoints();
-                //             break;
-
-                //         case "ChecklistGoal":
-                //             string[] details4 = goalDetails2.Split(',');
-                //             bool isComplete2 = bool.Parse(details4[3]);
-                //             int bonus2 = int.Parse(details4[4]);
-                //             int timesToComplete2 = int.Parse(details4[5]);
-                //             int timesCompleted2 = int.Parse(details4[6]);
-                //             Console.Write("How many times did you accomplish this goal? ");
-                //             timesCompleted2 += int.Parse(Console.ReadLine());
-
-                //             if (timesCompleted2 >= timesToComplete2)
-                //             {
-                //                 totalPoints += bonus2;
-                //                 isComplete2 = true;
-                //             }
-
-                //             ChecklistGoal checklistGoal = new ChecklistGoal(details4[0], details4[1], int.Parse(details4[2]), isComplete2, bonus2, timesToComplete2, timesCompleted2);
-                //             goals[userEvent - 1] = checklistGoal.GoalStatus();
-                //             separatedGoals[userEvent - 1] = checklistGoal.SeparateGoal();
-                //             totalPoints += checklistGoal.GetGoalPoints();
-                //             break;
-
-                //         default:
-                //             break;
