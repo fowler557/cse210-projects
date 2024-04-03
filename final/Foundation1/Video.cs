@@ -2,7 +2,7 @@ class Video
 {
     private string _title;
     private string _author;
-    private int _length; // in seconds
+    private int _length; // in minutes
     private List<Comment> _comments;
 
     public Video(string title, string author, int length)
