@@ -15,18 +15,27 @@ class Order
         _products.Add(product);
     }
 
-    public decimal GetTotalCost()
+  public decimal GetTotalCost()
+{
+    decimal totalProductCost = 0;
+    foreach (Product product in _products)
     {
-        decimal totalProductCost = 0;
-        foreach (Product product in _products)
-        {
-            totalProductCost += product.GetTotalCost();
-        }
-
-        decimal shippingCost = _customer.IsInUSA() ? _shippingCostUSA : _shippingCostInternational;
-
-        return totalProductCost + shippingCost;
+        totalProductCost += product.GetTotalCost();
     }
+
+    decimal shippingCost;
+    if (_customer.IsInUSA())
+    {
+        shippingCost = _shippingCostUSA;
+    }
+    else
+    {
+        shippingCost = _shippingCostInternational;
+    }
+
+    return totalProductCost + shippingCost;
+}
+
 
     public string GetPackingLabel()
     {
