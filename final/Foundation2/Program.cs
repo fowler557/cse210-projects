@@ -13,10 +13,10 @@ class Program
         Customer customer2 = new Customer("Jannet Smith", address2);
 
         // Creating products
-        Product product1 = new Product("Laptop", 10001, 1000m, 5);
-        Product product2 = new Product("Smartphone", 10002, 700m, 2);
-        Product product3 = new Product("Keyboard", 10003, 50m, 2);
-        Product product4 = new Product("Mouse", 10004, 25m, 2);
+        Product product1 = new Product("Laptop", 10001, 1000, 5);
+        Product product2 = new Product("Smartphone", 10002, 700, 2);
+        Product product3 = new Product("Keyboard", 10003, 50, 2);
+        Product product4 = new Product("Mouse", 10004, 25, 2);
 
         // Creating orders
         Order order1 = new Order(customer1);
