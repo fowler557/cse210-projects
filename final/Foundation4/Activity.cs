@@ -41,3 +41,4 @@ public abstract class Activity
         return $"{_date:dd MMM yyyy} {GetType().Name} ({_lengthInMinutes} min) - Distance: {GetDistance():F2} km, Speed: {GetSpeed():F2} kph, Pace: {GetPace():F2} min per km"; //{GetType().Name} is turning the class name to a string here.
     }
 } 
+ 

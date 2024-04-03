@@ -14,4 +14,4 @@ public class Cycling : Activity
         return _speed * (GetLengthInMinutes() / 60.0);
     }
 }
- 
+  

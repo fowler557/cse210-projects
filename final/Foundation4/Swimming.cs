@@ -14,4 +14,4 @@ public class Swimming : Activity
         return _numberOfLaps * 50 / 1000.0; // the laps are 50 meters
     }
 }
- 
+  
