@@ -1,6 +1,6 @@
 using System;
 
-public abstract class Activity
+public class Activity
 {
     private DateTime _date;
     private int _lengthInMinutes;
